@@ -1,0 +1,1104 @@
+/* Prize Key Flower Highlights */
+.bonus-modal-prizekey-img-wrapper {
+    position: relative;
+    display: block;
+}
+.prizekey-flower-highlights {
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+.prizekey-flower-highlight {
+    background: rgba(255, 215, 0, 0.65);
+    border-radius: 0 0 18px 18px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.prizekey-flower-highlight.active {
+    opacity: 1;
+    box-shadow: 0 0 16px 4px #ffe066, 0 0 32px 8px #ffd700;
+}
+.bonus-grid-bonus-img {
+    margin-left: 20px;
+}
+/* Bonus Button */
+.bonus-btn {
+    background: linear-gradient(135deg, #00c3ff, #3a7bd5);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 14px 36px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,195,255,0.18);
+    transition: all 0.2s;
+}
+.bonus-btn:hover {
+    background: linear-gradient(135deg, #3a7bd5, #00c3ff);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Bonus Modal Styles */
+.bonus-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bonus-modal-content {
+    background: url('Slingo_assets/Background.png') center center / cover no-repeat;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    padding: 32px 32px 32px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+    min-width: 900px;
+    min-height: 440px;
+}
+.bonus-modal-prizetable {
+    width: 240px;
+    height: 440px;
+    margin-right: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100px !important;
+    max-width: 90% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+.bonus-modal-grid-area {
+    position: relative;
+    width: 440px;
+    height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bonus-grid-bg {
+    pointer-events: none;
+    border-radius: 12px;
+}
+.bonus-grid {
+    width: 440px;
+    height: 440px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 20px;
+}
+.close-bonus-modal {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: transparent;
+    color: #333;
+    border: none;
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    z-index: 10;
+}
+.close-bonus-modal:hover {
+    background: #eee;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('Slingo_assets/Background.png') center center / cover no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: auto;
+    position: relative;
+}
+
+body::before {
+    /* Removed white overlay that caused the white circle in the bonus modal */
+}
+
+.game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Header Section */
+.header-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    text-align: center;
+    padding: 0;
+    display: inline-block;
+}
+
+.game-logo {
+    max-height: 180px;
+    max-width: 450px;
+    height: auto;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.game-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Main Game Area */
+.main-game-area {
+    display: grid;
+    grid-template-columns: 270px 1fr 250px;
+    gap: 15px;
+    align-items: start;
+}
+
+/* Prize Table */
+
+.prize-table {
+    width: 270px;
+    min-width: 270px;
+    max-width: 270px;
+    background: none;
+    background-image: url('Slingo_assets/no text.png');
+    background-size: 130% 102%;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 24px 0 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 1;
+}
+
+.prize-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7.76px;
+    padding: 0 0 24px 0;
+    position: relative;
+    margin-top: 0;
+}
+
+.prize-table h3 {
+    margin: 0;
+    padding: 0 !important;
+    height: 0;
+    overflow: hidden;
+}
+
+
+
+.prize-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    min-height: 36px;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    box-shadow: none;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    gap: 0;
+}
+
+/* Remove any margin/padding from prize-name and prize-value for tightest spacing */
+.prize-name, .prize-value {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* Position each prize item in specific colored boxes based on HTML order (flipped) */
+
+
+.prize-item.achieved {
+    background: rgba(255, 215, 0, 0.7);
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+    font-weight: bold;
+}
+
+.prize-item.achieved .prize-value {
+    color: #ff6b35;
+}
+
+.prize-name {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.prize-value {
+    font-size: 0.9rem;
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+}
+
+/* Game Board Container */
+.game-board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.game-board {
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* Number Grid */
+.number-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+    gap: 8px;
+    margin-bottom: 5px;
+    background: url('Slingo_assets/grid.png') center center / contain no-repeat;
+    background-size: 100% auto;
+    position: relative;
+    padding: 40px;
+    width: fit-content;
+    margin: 0 auto 5px auto;
+}
+
+.number-cell {
+    background: url('Slingo_assets/lily-pad 1.png') center center / contain no-repeat;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+}
+
+.number-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.number-cell[data-free="true"] {
+    background: linear-gradient(145deg, #ffd700, #ffed4e);
+    color: #333;
+    font-size: 1rem;
+    border-color: #ff6b35;
+}
+
+.number-cell.marked {
+    background: url('Slingo_assets/flower_1.png') center center / cover no-repeat !important;
+    color: transparent !important;
+    border: none !important;
+    font-size: 0;
+    box-shadow: none !important;
+}
+
+.number-cell.wild-fish-selectable {
+    border: 3px solid #00ff88 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.8) !important;
+    cursor: pointer !important;
+    animation: wild-fish-glow 1s ease-in-out infinite alternate !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.number-cell.wild-fish-selectable:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 1) !important;
+    border-color: #ffff00 !important;
+}
+
+@keyframes wild-fish-glow {
+    0% { 
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+        border-color: #00ff88;
+    }
+    100% { 
+        box-shadow: 0 0 30px rgba(0, 255, 136, 1);
+        border-color: #00ffaa;
+    }
+}
+
+.number-cell.super-wild-selectable {
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.9) !important;
+    cursor: pointer !important;
+    animation: super-wild-glow 1s ease-in-out infinite alternate !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.number-cell.super-wild-selectable:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 0 35px rgba(255, 215, 0, 1) !important;
+    border-color: #ff6b35 !important;
+}
+
+@keyframes super-wild-glow {
+    0% { 
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+        border-color: #ffd700;
+    }
+    100% { 
+        box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+        border-color: #ffed4e;
+    }
+}
+
+/* Spin Row */
+.spin-row {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    gap: 8px;
+    background: url('Slingo_assets/reels-slingo.png') center center / contain no-repeat;
+    background-size: 100% 102%;
+    position: relative;
+    padding: 10px 40px 20px 40px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.spin-cell {
+    background: url('Slingo_assets/lily-pad 1.png') center center / contain no-repeat;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    height: 80px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+    background-position: center center;
+}
+
+.spin-cell.active {
+    background: url('Slingo_assets/lily-pad 1.png') center center / contain no-repeat;
+    background-color: transparent;
+        padding: 0;
+        margin: 0;
+}
+
+.spin-cell.super-wild {
+    background-image: url('Slingo_assets/super wild fish.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.super-wild.active {
+    transform: scale(1.1);
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.wild-fish {
+    background-image: url('Slingo_assets/wild fish.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.wild-fish.active {
+    transform: scale(1.1);
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.blocker {
+    background-image: url('Slingo_assets/blocker.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.blocker.active {
+    transform: scale(1.1);
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.bonus {
+    background-image: url('Slingo_assets/bonus.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.spin-cell.bonus.active {
+    transform: scale(1.1);
+    border: none !important;
+    box-shadow: none !important;
+    animation: bonus-shimmer 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bonus-shimmer {
+    0% { 
+        filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+    }
+    100% { 
+        filter: brightness(1.3) drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+    }
+}
+
+.floating-bonus {
+    animation: bonus-hop 1.5s ease-out forwards !important;
+}
+
+@keyframes bonus-launch {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+    50% { 
+        transform: scale(1.3) rotate(180deg);
+        box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+    }
+    100% { 
+        transform: scale(1.1) rotate(360deg);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+    }
+}
+
+@keyframes bonus-travel {
+    0% { 
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6)) brightness(1.2);
+    }
+    50% { 
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)) brightness(1.4);
+    }
+    100% { 
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)) brightness(1.1);
+    }
+}
+
+@keyframes bonus-collect {
+    0% { 
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% { 
+        transform: scale(1.2);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 1);
+    }
+    100% { 
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+}
+
+/* Spin Controls */
+.spin-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.spin-btn {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ffd700;
+}
+
+.spin-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 107, 53, 0.6);
+    background: linear-gradient(145deg, #e55a2b, #d14d20);
+}
+
+.spin-btn:active {
+    transform: translateY(0);
+}
+
+.spin-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.auto-spin-btn {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.auto-spin-btn:hover {
+    background: linear-gradient(135deg, #218838, #1e9f8a);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+    transform: translateY(-2px);
+}
+
+.auto-spin-btn:active {
+    transform: translateY(0);
+}
+
+.auto-spin-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.auto-spin-btn.active {
+    background: linear-gradient(135deg, #dc3545, #e63946);
+    animation: auto-spin-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes auto-spin-pulse {
+    from { box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4); }
+    to { box-shadow: 0 8px 25px rgba(220, 53, 69, 0.8); }
+}
+
+/* Right Panel */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Spin Counter */
+.spin-counter {
+    background: none;
+    border-radius: 0;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    box-shadow: none;
+}
+
+.spin-counter h3 {
+    color: #ffd700;
+    margin-bottom: 16px;
+    font-size: 1.43rem;
+}
+
+.log-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 0 auto;
+}
+
+.log-item {
+    width: 53.24px;
+    height: 53.24px;
+    background: url('Slingo_assets/log.png') center center / cover no-repeat;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.log-item.used {
+    opacity: 0.3;
+    filter: grayscale(100%) brightness(0.5);
+}
+
+.log-with-countdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-countdown {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px #000, 0 0 16px #ffd700;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.caller-image {
+    text-align: center;
+    margin-top: 17px;
+}
+
+.caller-img {
+    width: 66px;
+    height: auto;
+    max-width: 100%;
+}
+
+.caller-number {
+    background: #ff6b35;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 0;
+    border: 2px solid #ffd700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.counter-display span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Bonus Round */
+.bonus-round {
+    background: none;
+    border-radius: 0;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    box-shadow: none;
+}
+
+.bonus-round h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.bonus-spaces {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.bonus-space {
+    width: 60px;
+    height: 60px;
+    background: url('Slingo_assets/bonuspad.png') center center / cover no-repeat;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.bonus-space.collected {
+    background: linear-gradient(145deg, #ffd700, #ffed4e);
+    border-color: #ff6b35;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+}
+
+.bonus-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: transparent;
+}
+
+.bonus-space.collected .bonus-icon {
+    color: #333;
+}
+
+.bonus-space.bonus-collected {
+    background-image: url('Slingo_assets/bonus.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.bonus-info p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Score Display */
+.score-display {
+    background: linear-gradient(145deg, #3a2317, #2a1810);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #ffd700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.score-display h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.score-value {
+    background: linear-gradient(145deg, #2a1810, #1a0f08);
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #ff6b35;
+}
+
+.score-value span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* Game Status - now inline with spin button */
+.game-status-inline {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#game-message {
+    background: linear-gradient(145deg, #3a2317, #2a1810);
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 2px solid #ffd700;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-game-area {
+        grid-template-columns: 225px 1fr 250px;
+        gap: 20px;
+    }
+    
+    .number-cell, .spin-cell {
+        width: 70px;
+        height: 70px;
+        font-size: 1.3rem;
+    }
+    
+    .number-grid {
+        grid-template-columns: repeat(5, 70px);
+        grid-template-rows: repeat(5, 70px);
+    }
+    
+    .spin-row {
+        grid-template-columns: repeat(5, 70px);
+    }
+}
+
+@media (max-width: 992px) {
+    .main-game-area {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .game-container {
+        padding: 15px;
+    }
+    
+    .right-panel {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-placeholder h1 {
+        font-size: 2rem;
+    }
+    
+    .number-cell, .spin-cell {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+    
+    .number-grid {
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: repeat(5, 60px);
+    }
+    
+    .spin-row {
+        grid-template-columns: repeat(5, 60px);
+    }
+    
+    .spin-btn {
+        padding: 12px 30px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Animation for spinning effect */
+@keyframes spin-animation {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.spinning {
+    animation: spin-animation 0.5s ease-in-out;
+}
+
+/* Slingo line completion animations */
+@keyframes golden-pulse {
+    0% { 
+        box-shadow: 0 0 10px #ffd700;
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 30px #ffd700, 0 0 40px #ffed4e, 0 0 50px #ff6b35;
+        transform: scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 0 15px #ffd700;
+        transform: scale(1);
+    }
+}
+
+@keyframes pink-pulse {
+    0% { 
+        box-shadow: 0 0 15px #ff69b4;
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 35px #ff69b4, 0 0 45px #ff1493, 0 0 55px #ff6ec7;
+        transform: scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 0 20px #ff69b4;
+        transform: scale(1);
+    }
+}
+
+@keyframes slingo-text-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-50px);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1.2) translateY(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+    }
+}
+
+.slingo-line {
+    animation: pink-pulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+.slingo-line::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #ff6ec7, #ff69b4);
+    border-radius: 15px;
+    z-index: -1;
+    animation: pink-pulse 2s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+/* Ensure marked cells (flowers) stay on top */
+.number-cell.marked {
+    z-index: 2;
+}
+
+/* Large SLINGO text overlay */
+.slingo-announcement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: slingo-text-appear 2.5s ease-out forwards;
+    pointer-events: none;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Enhanced animations for multiple slingos */
+@keyframes double-slingo-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-100px) rotate(-10deg);
+    }
+    30% {
+        opacity: 1;
+        transform: scale(1.3) translateY(0) rotate(0deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.1) translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9) translateY(100px) rotate(10deg);
+    }
+}
+
+@keyframes triple-slingo-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.2) translateY(-150px) rotate(-20deg);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1.5) translateY(-20px) rotate(5deg);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.3) translateY(20px) rotate(-5deg);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.2) translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1) translateY(150px) rotate(20deg);
+    }
+}
+
+
+/* Sparkle effects for slingo */
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+/* Bounce animation for flowers when they appear */
+@keyframes flower-bounce {
+    0% { 
+        transform: scale(0.3) translateY(20px);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.2) translateY(-10px);
+        opacity: 1;
+    }
+    70% { 
+        transform: scale(0.9) translateY(5px);
+    }
+    85% { 
+        transform: scale(1.05) translateY(-3px);
+    }
+    100% { 
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.flower-bounce {
+    animation: flower-bounce 0.6s ease-out forwards;
+}
+
+.sparkle {
+    position: absolute;
+    color: #ffd700;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: sparkle 1s ease-in-out;
+    z-index: 100;
+}

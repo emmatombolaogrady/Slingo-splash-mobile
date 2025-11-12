@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slingo Splash - Game Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Top Header Section -->
+        <div class="header-section">
+            <div class="logo-container">
+                <img src="Slingo_assets/Slingo-Splash.png" alt="Slingo Splash Logo" class="game-logo">
+            </div>
+            <div class="bonus-controls" style="text-align:center; margin-top:20px;">
+                <button id="bonusButton" class="bonus-btn">Bonus</button>
+            </div>
+    <!-- Bonus Modal (hidden by default) -->
+    <div id="bonusModal" class="bonus-modal" style="display:none;">
+        <div class="bonus-modal-content">
+            <!-- Prize key image removed from bonus modal -->
+            <div class="bonus-modal-grid-area" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 24px;">
+                <!-- Prize key image removed as requested -->
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%;">
+                    <div style="flex: 1 1 auto; display: flex; justify-content: center;">
+                        <div style="position: relative; width: 440px; height: 440px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                            <img src="Slingo_assets/grid water ripples.png" class="bonus-grid-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; max-width:100%; max-height:100%; z-index:0;">
+                            <div class="bonus-grid" style="position:absolute; top:0; left:0; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr); gap:0; width:100%; height:100%;"></div>
+                        </div>
+                    </div>
+                    <div class="bonus-modal-prizekey-img-wrapper" style="position: relative; height: 440px; width: 120px; margin-left: 32px; align-self: center;">
+                        <img src="Slingo_assets/prize key.png" alt="Prize Key" class="bonus-modal-prizekey-img" style="height: 440px; width: 120px; display: block;" />
+                        <div class="prizekey-flower-highlights">
+                            <div class="prizekey-flower-highlight" data-flower="1" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 0;"></div>
+                            <div class="prizekey-flower-highlight" data-flower="2" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 49px;"></div>
+                            <div class="prizekey-flower-highlight" data-flower="3" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 98px;"></div>
+                            <div class="prizekey-flower-highlight" data-flower="4" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 147px;"></div>
+                            <div class="prizekey-flower-highlight" data-flower="5" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 196px;"></div>
+                            <div class="prizekey-flower-highlight" data-flower="6" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 245px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="closeBonusModal" class="close-bonus-modal">×</button>
+        </div>
+    </div>
+        </div>
+
+        <!-- Main Game Layout -->
+        <div class="main-game-area">
+            <!-- Left Side - Prize Table -->
+            <div class="prize-table">
+                <h3></h3>
+                <div class="prize-list">
+                    <div class="prize-item">
+                        <span class="prize-name">12 Slingos</span>
+                        <span class="prize-value">£350</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">10 Slingos</span>
+                        <span class="prize-value">£140</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">9 Slingos</span>
+                        <span class="prize-value">£70</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">8 Slingos</span>
+                        <span class="prize-value">£25</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">7 Slingos</span>
+                        <span class="prize-value">£15</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">6 Slingos</span>
+                        <span class="prize-value">£10</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">5 Slingos</span>
+                        <span class="prize-value">£5</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">4 Slingos</span>
+                        <span class="prize-value">£3</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">3 Slingos</span>
+                        <span class="prize-value">£1</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">2 Slingos</span>
+                        <span class="prize-value">^</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-name">1 Slingo</span>
+                        <span class="prize-value">^</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center - Game Board -->
+            <div class="game-board-container">
+                <div class="game-board">
+                    <!-- 5x5 Grid -->
+                    <div class="number-grid">
+                        <!-- Row 1 -->
+                        <div class="number-cell" data-row="0" data-col="0"></div>
+                        <div class="number-cell" data-row="0" data-col="1"></div>
+                        <div class="number-cell" data-row="0" data-col="2"></div>
+                        <div class="number-cell" data-row="0" data-col="3"></div>
+                        <div class="number-cell" data-row="0" data-col="4"></div>
+                        
+                        <!-- Row 2 -->
+                        <div class="number-cell" data-row="1" data-col="0"></div>
+                        <div class="number-cell" data-row="1" data-col="1"></div>
+                        <div class="number-cell" data-row="1" data-col="2"></div>
+                        <div class="number-cell" data-row="1" data-col="3"></div>
+                        <div class="number-cell" data-row="1" data-col="4"></div>
+                        
+                        <!-- Row 3 -->
+                        <div class="number-cell" data-row="2" data-col="0"></div>
+                        <div class="number-cell" data-row="2" data-col="1"></div>
+                        <div class="number-cell" data-row="2" data-col="2"></div>
+                        <div class="number-cell" data-row="2" data-col="3"></div>
+                        <div class="number-cell" data-row="2" data-col="4"></div>
+                        
+                        <!-- Row 4 -->
+                        <div class="number-cell" data-row="3" data-col="0"></div>
+                        <div class="number-cell" data-row="3" data-col="1"></div>
+                        <div class="number-cell" data-row="3" data-col="2"></div>
+                        <div class="number-cell" data-row="3" data-col="3"></div>
+                        <div class="number-cell" data-row="3" data-col="4"></div>
+                        
+                        <!-- Row 5 -->
+                        <div class="number-cell" data-row="4" data-col="0"></div>
+                        <div class="number-cell" data-row="4" data-col="1"></div>
+                        <div class="number-cell" data-row="4" data-col="2"></div>
+                        <div class="number-cell" data-row="4" data-col="3"></div>
+                        <div class="number-cell" data-row="4" data-col="4"></div>
+                    </div>
+
+                    <!-- Bottom Row - Spin Results -->
+                    <div class="spin-row">
+                        <div class="spin-cell" data-col="0"></div>
+                        <div class="spin-cell" data-col="1"></div>
+                        <div class="spin-cell" data-col="2"></div>
+                        <div class="spin-cell" data-col="3"></div>
+                        <div class="spin-cell" data-col="4"></div>
+                    </div>
+                </div>
+
+                <!-- Spin Button -->
+                            <div class="spin-controls">
+                <button id="spinButton" class="spin-btn">Spin</button>
+                <button id="autoSpinButton" class="auto-spin-btn">Auto Spin</button>
+            </div>
+            </div>
+
+            <!-- Right Side - Counters and Bonus -->
+            <div class="right-panel">
+                <!-- Spin Counter - Log Bar -->
+                <div class="spin-counter">
+                    <div class="log-bar">
+                        <div class="log-item" data-spin="8"></div>
+                        <div class="log-item" data-spin="7"></div>
+                        <div class="log-item" data-spin="6"></div>
+                        <div class="log-item" data-spin="5"></div>
+                        <div class="log-item" data-spin="4"></div>
+                        <div class="log-item" data-spin="3"></div>
+                        <div class="log-item" data-spin="2"></div>
+                        <div class="log-item log-with-countdown" data-spin="1">
+                            <span class="log-countdown" id="log-countdown">8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bonus Round UI -->
+                <div class="bonus-round">
+                    <h3>BONUS</h3>
+                    <div class="bonus-spaces">
+                        <div class="bonus-space" data-slot="0">
+                            <span class="bonus-icon">?</span>
+                        </div>
+                        <div class="bonus-space" data-slot="1">
+                            <span class="bonus-icon">?</span>
+                        </div>
+                        <div class="bonus-space" data-slot="2">
+                            <span class="bonus-icon">?</span>
+                        </div>
+                    </div>
+                    <div class="bonus-info">
+                        <p>Collect 3 for Bonus Round!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
