@@ -13,32 +13,25 @@
             <div class="logo-container">
                 <img src="Slingo_assets/Slingo-Splash.png" alt="Slingo Splash Logo" class="game-logo">
             </div>
-            <div class="bonus-controls" style="text-align:center; margin-top:20px;">
-                <button id="bonusButton" class="bonus-btn">Bonus</button>
-            </div>
+            <!-- Bonus button moved next to spin controls (removed from header) -->
     <!-- Bonus Modal (hidden by default) -->
     <div id="bonusModal" class="bonus-modal" style="display:none;">
         <div class="bonus-modal-content">
             <!-- Prize key image removed from bonus modal -->
-            <div class="bonus-modal-grid-area" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 24px;">
-                <!-- Prize key image removed as requested -->
-                <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%;">
-                    <div style="flex: 1 1 auto; display: flex; justify-content: center;">
-                        <div style="position: relative; width: 440px; height: 440px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                            <img src="Slingo_assets/grid water ripples.png" class="bonus-grid-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; max-width:100%; max-height:100%; z-index:0;">
-                            <div class="bonus-grid" style="position:absolute; top:0; left:0; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr); gap:0; width:100%; height:100%;"></div>
-                        </div>
-                    </div>
-                    <div class="bonus-modal-prizekey-img-wrapper" style="position: relative; height: 440px; width: 120px; margin-left: 32px; align-self: center;">
-                        <img src="Slingo_assets/prize key.png" alt="Prize Key" class="bonus-modal-prizekey-img" style="height: 440px; width: 120px; display: block;" />
-                        <div class="prizekey-flower-highlights">
-                            <div class="prizekey-flower-highlight" data-flower="1" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 0;"></div>
-                            <div class="prizekey-flower-highlight" data-flower="2" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 49px;"></div>
-                            <div class="prizekey-flower-highlight" data-flower="3" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 98px;"></div>
-                            <div class="prizekey-flower-highlight" data-flower="4" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 147px;"></div>
-                            <div class="prizekey-flower-highlight" data-flower="5" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 196px;"></div>
-                            <div class="prizekey-flower-highlight" data-flower="6" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 245px;"></div>
-                        </div>
+            <div class="bonus-layout">
+                <div class="bonus-grid-wrapper">
+                    <img src="Slingo_assets/grid water ripples.png" class="bonus-grid-bg" alt="Bonus Grid Background">
+                    <div class="bonus-grid"></div>
+                </div>
+                <div class="bonus-modal-prizekey-img-wrapper" aria-label="Prize Key">
+                    <img src="Slingo_assets/prize key.png" alt="Prize Key" class="bonus-modal-prizekey-img" />
+                    <div class="prizekey-flower-highlights">
+                        <div class="prizekey-flower-highlight" data-flower="1" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 0;"></div>
+                        <div class="prizekey-flower-highlight" data-flower="2" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 49px;"></div>
+                        <div class="prizekey-flower-highlight" data-flower="3" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 98px;"></div>
+                        <div class="prizekey-flower-highlight" data-flower="4" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 147px;"></div>
+                        <div class="prizekey-flower-highlight" data-flower="5" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 196px;"></div>
+                        <div class="prizekey-flower-highlight" data-flower="6" style="position: absolute; left: 0; width: 120px; height: 49px; bottom: 245px;"></div>
                     </div>
                 </div>
             </div>
@@ -50,7 +43,7 @@
         <!-- Main Game Layout -->
         <div class="main-game-area">
             <!-- Left Side - Prize Table -->
-            <div class="prize-table">
+            <div class="prize-table" aria-label="Prize Key">
                 <h3></h3>
                 <div class="prize-list">
                     <div class="prize-item">
@@ -100,9 +93,10 @@
                 </div>
             </div>
 
-            <!-- Center - Game Board -->
-            <div class="game-board-container">
-                <div class="game-board">
+            <!-- Center Panel: Game Board + Bonus UI -->
+            <div class="center-panel">
+                <div class="game-board-container" aria-label="Game Grid and Reels">
+                    <div class="game-board">
                     <!-- 5x5 Grid -->
                     <div class="number-grid">
                         <!-- Row 1 -->
@@ -151,33 +145,16 @@
                     </div>
                 </div>
 
-                <!-- Spin Button -->
-                            <div class="spin-controls">
-                <button id="spinButton" class="spin-btn">Spin</button>
-                <button id="autoSpinButton" class="auto-spin-btn">Auto Spin</button>
-            </div>
-            </div>
-
-            <!-- Right Side - Counters and Bonus -->
-            <div class="right-panel">
-                <!-- Spin Counter - Log Bar -->
-                <div class="spin-counter">
-                    <div class="log-bar">
-                        <div class="log-item" data-spin="8"></div>
-                        <div class="log-item" data-spin="7"></div>
-                        <div class="log-item" data-spin="6"></div>
-                        <div class="log-item" data-spin="5"></div>
-                        <div class="log-item" data-spin="4"></div>
-                        <div class="log-item" data-spin="3"></div>
-                        <div class="log-item" data-spin="2"></div>
-                        <div class="log-item log-with-countdown" data-spin="1">
-                            <span class="log-countdown" id="log-countdown">8</span>
-                        </div>
+                    <!-- Spin Buttons -->
+                    <div class="spin-controls" aria-label="Spin Controls">
+                        <button id="spinButton" class="spin-btn">Spin</button>
+                        <button id="autoSpinButton" class="auto-spin-btn">Auto Spin</button>
+                        <button id="bonusButton" class="bonus-btn bonus-inline" aria-label="Open Bonus Round">Bonus</button>
                     </div>
                 </div>
 
-                <!-- Bonus Round UI -->
-                <div class="bonus-round">
+                <!-- Bonus Round now directly beneath game board for mobile layout -->
+                <div class="bonus-round" aria-label="Bonus Collector">
                     <h3>BONUS</h3>
                     <div class="bonus-spaces">
                         <div class="bonus-space" data-slot="0">
@@ -194,6 +171,25 @@
                         <p>Collect 3 for Bonus Round!</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Right Side - Counters -->
+            <div class="right-panel" aria-label="Spin Counter">
+                <div class="spin-counter">
+                    <div class="log-bar">
+                        <div class="log-item" data-spin="8"></div>
+                        <div class="log-item" data-spin="7"></div>
+                        <div class="log-item" data-spin="6"></div>
+                        <div class="log-item" data-spin="5"></div>
+                        <div class="log-item" data-spin="4"></div>
+                        <div class="log-item" data-spin="3"></div>
+                        <div class="log-item" data-spin="2"></div>
+                        <div class="log-item log-with-countdown" data-spin="1">
+                            <span class="log-countdown" id="log-countdown">8</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

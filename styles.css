@@ -2,7 +2,11 @@
 .bonus-modal-prizekey-img-wrapper {
     position: relative;
     display: block;
+    width: 120px;
+    height: var(--bonus-size);
+    flex-shrink: 0;
 }
+.bonus-modal-prizekey-img-wrapper img { width: 100%; height: 100%; object-fit: contain; }
 .prizekey-flower-highlights {
     position: absolute;
     left: 0; top: 0; width: 100%; height: 100%;
@@ -10,15 +14,16 @@
     z-index: 2;
 }
 .prizekey-flower-highlight {
-    background: rgba(255, 215, 0, 0.65);
+    background: transparent; /* removed yellow fill */
     border-radius: 0 0 18px 18px;
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
 }
 .prizekey-flower-highlight.active {
-    opacity: 1;
-    box-shadow: 0 0 16px 4px #ffe066, 0 0 32px 8px #ffd700;
+    opacity: 1; /* keep visibility for positioning if needed */
+    box-shadow: none; /* removed yellow glow */
+    background: transparent; /* ensure no yellow tint */
 }
 .bonus-grid-bonus-img {
     margin-left: 20px;
@@ -62,8 +67,10 @@
     flex-direction: row;
     align-items: flex-start;
     position: relative;
-    min-width: 900px;
-    min-height: 440px;
+    min-width: 0;
+    width: auto;
+    max-width: 95vw;
+    min-height: var(--bonus-size);
 }
 .bonus-modal-prizetable {
     width: 240px;
@@ -82,8 +89,8 @@
 }
 .bonus-modal-grid-area {
     position: relative;
-    width: 440px;
-    height: 440px;
+    width: var(--bonus-size);
+    height: var(--bonus-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,10 +98,13 @@
 .bonus-grid-bg {
     pointer-events: none;
     border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .bonus-grid {
-    width: 440px;
-    height: 440px;
+    width: var(--bonus-size);
+    height: var(--bonus-size);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -104,6 +114,8 @@
     left: 0;
     margin-left: 20px;
 }
+.bonus-layout { display:flex; flex-direction:row; align-items:center; justify-content:center; gap:24px; }
+.bonus-grid-wrapper { position:relative; width:var(--bonus-size); height:var(--bonus-size); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
 .close-bonus-modal {
     position: absolute;
     top: 12px;
@@ -139,9 +151,13 @@ body {
     position: relative;
 }
 
-body::before {
-    /* Removed white overlay that caused the white circle in the bonus modal */
+/* Responsive sizing variables */
+:root {
+    --cell-size: 80px;
+    --sidebar-width: 270px;
+    --bonus-size: 440px;
 }
+
 
 .game-container {
     max-width: 1400px;
@@ -177,9 +193,20 @@ body::before {
 /* Main Game Area */
 .main-game-area {
     display: grid;
-    grid-template-columns: 270px 1fr 250px;
+    grid-template-columns: var(--sidebar-width) 1fr 250px;
     gap: 15px;
     align-items: start;
+}
+
+/* Center panel wrapper for game board + bonus */
+.center-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
 }
 
 /* Prize Table */
@@ -302,8 +329,8 @@ body::before {
 /* Number Grid */
 .number-grid {
     display: grid;
-    grid-template-columns: repeat(5, 80px);
-    grid-template-rows: repeat(5, 80px);
+    grid-template-columns: repeat(5, var(--cell-size));
+    grid-template-rows: repeat(5, var(--cell-size));
     gap: 8px;
     margin-bottom: 5px;
     background: url('Slingo_assets/grid.png') center center / contain no-repeat;
@@ -405,7 +432,7 @@ body::before {
 /* Spin Row */
 .spin-row {
     display: grid;
-    grid-template-columns: repeat(5, 80px);
+    grid-template-columns: repeat(5, var(--cell-size));
     gap: 8px;
     background: url('Slingo_assets/reels-slingo.png') center center / contain no-repeat;
     background-size: 100% 102%;
@@ -425,7 +452,7 @@ body::before {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    height: 80px;
+    height: var(--cell-size);
     transition: all 0.3s ease;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
     background-color: transparent;
@@ -555,6 +582,20 @@ body::before {
 .spin-controls {
     text-align: center;
     margin-top: 20px;
+}
+
+.spin-controls .bonus-inline {
+    margin-left: 12px;
+    padding: 12px 26px;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+    .spin-controls .bonus-inline {
+        padding: 9px 18px;
+        font-size: 0.9rem;
+        margin-left: 8px;
+    }
 }
 
 .spin-btn {
@@ -843,70 +884,51 @@ body::before {
     margin: 0 auto;
 }
 
-/* Responsive Design */
+/* Responsive Design (updated for consistent side columns on mobile) */
 @media (max-width: 1200px) {
-    .main-game-area {
-        grid-template-columns: 225px 1fr 250px;
-        gap: 20px;
-    }
-    
-    .number-cell, .spin-cell {
-        width: 70px;
-        height: 70px;
-        font-size: 1.3rem;
-    }
-    
-    .number-grid {
-        grid-template-columns: repeat(5, 70px);
-        grid-template-rows: repeat(5, 70px);
-    }
-    
-    .spin-row {
-        grid-template-columns: repeat(5, 70px);
-    }
+    :root { --cell-size: 72px; --sidebar-width: 240px; }
 }
-
 @media (max-width: 992px) {
-    .main-game-area {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .game-container {
-        padding: 15px;
-    }
-    
-    .right-panel {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-    }
+    :root { --cell-size: 65px; --sidebar-width: 200px; }
+    .main-game-area { grid-template-columns: var(--sidebar-width) 1fr 160px; }
 }
-
 @media (max-width: 768px) {
-    .logo-placeholder h1 {
-        font-size: 2rem;
-    }
-    
-    .number-cell, .spin-cell {
-        width: 60px;
-        height: 60px;
-        font-size: 1.2rem;
-    }
-    
-    .number-grid {
-        grid-template-columns: repeat(5, 60px);
-        grid-template-rows: repeat(5, 60px);
-    }
-    
-    .spin-row {
-        grid-template-columns: repeat(5, 60px);
-    }
-    
-    .spin-btn {
-        padding: 12px 30px;
-        font-size: 1.3rem;
-    }
+    :root { --cell-size: 58px; --sidebar-width: 110px; }
+    .main-game-area { grid-template-columns: var(--sidebar-width) 1fr 100px; gap: 10px; }
+    .prize-table { width: var(--sidebar-width); min-width: var(--sidebar-width); background-size: 160% 102%; }
+    .right-panel { width: 100px; min-width: 100px; }
+    .spin-controls { position: sticky; bottom: 12px; background: rgba(0,0,0,0.35); backdrop-filter: blur(6px); padding: 8px 14px; border-radius: 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.4); width: 100%; }
+    .spin-btn { padding: 10px 24px; font-size: 1.2rem; }
+    .auto-spin-btn { margin-top: 6px; padding: 10px 20px; font-size: 1rem; }
+    .bonus-round { margin-top: 4px; padding: 12px 8px; }
+    .bonus-space { width: 50px; height: 50px; }
+}
+@media (max-width: 480px) {
+    :root { --cell-size: 50px; --sidebar-width: 90px; }
+    .main-game-area { grid-template-columns: var(--sidebar-width) 1fr 90px; gap: 6px; }
+    .number-grid { padding: 22px 12px; }
+    .spin-row { padding: 6px 12px 12px 12px; }
+    .game-logo { max-width: 320px; max-height: 120px; }
+    .spin-btn { padding: 9px 20px; font-size: 1.1rem; }
+    .auto-spin-btn { padding: 9px 18px; font-size: 0.9rem; }
+}
+/* Bonus modal responsive sizing */
+@media (max-width: 900px) {
+    :root { --bonus-size: min(360px, 90vw); }
+    .bonus-modal-content { padding: 24px 24px 24px 0; }
+    .bonus-modal-prizekey-img-wrapper { width: 100px; }
+}
+@media (max-width: 600px) {
+    :root { --bonus-size: min(300px, 82vw); }
+    .bonus-modal-content { padding: 18px 18px 18px 0; }
+    .bonus-modal-prizekey-img-wrapper { width: 90px; margin-left: 12px; }
+    .bonus-grid { margin-left: 12px; }
+}
+@media (max-width: 420px) {
+    :root { --bonus-size: min(260px, 78vw); }
+    .bonus-modal-content { padding: 14px 14px 14px 0; }
+    .bonus-modal-prizekey-img-wrapper { width: 80px; margin-left: 8px; }
+    .bonus-grid { margin-left: 8px; gap: 6px; }
 }
 
 /* Animation for spinning effect */
